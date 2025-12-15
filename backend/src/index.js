@@ -12,6 +12,9 @@ const port = 3000;
 
 connectDB();
 
+//middleware
+app.use(express.json());
+
 app.use("/api/notes",notesRoutes);
 
 app.listen(port, ()=>{

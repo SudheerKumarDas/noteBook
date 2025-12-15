@@ -1,13 +1,37 @@
-export const getAllNotes = (req,res)=>{
-    res.status(200).send("you have fetched all the notes successfully");
+import Note from "../models/Note.js";
+
+export const getAllNotes = async (req,res)=>{
+        try {
+            const notes =await Note.find();
+            res.status(200).json(notes);
+        } catch (error) {
+            console.error("Error in getAllNotes controller",error);
+            res.status(500).json({message:"internal server error"});
+        }
 }
 
-export const postNewNotes = (req,res)=>{
-    res.status(201).json({message : "Note created successfully"});
+export const postNewNotes = async (req,res)=>{
+    try {
+        const {title,content} = req.body;
+        const newNote = new Note({title,content});
+        await newNote.save();
+        res.status(201).json({message : "Note created successfully"});
+    } catch (error) {
+        console.error("Error in postNewNote controller",error);
+        res.status(500).json({message : "Internal server error"});
+    }
 }
 
-export const updateNotes = (req,res)=>{
-    res.status(200).json({message : "Note updated successfully"});
+export const updateNotes =async (req,res)=>{
+    try {
+        const {title,content} = req.body;
+        await Note.findByIdAndUpdate(req.params.id,{title,content});
+        res.status(200).json({message : "Note updated successfully"});
+    } catch (error) {
+        console.error("Error in updateNotes controller",error);
+        res.status(500).json({message : "Internal server error"});
+    }
+    
 }
 
 export const deleteNotes = (req,res)=>{
