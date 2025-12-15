@@ -1,22 +1,15 @@
 import express from "express";
+import { deleteNotes, getAllNotes, postNewNotes, updateNotes } from "../controllers/notesController.js";
 
 const router = express.Router();
 
-router.get("/",(req,res)=>{
-    res.status(200).send("You just fetched all the notes");
-})
+router.get("/", getAllNotes);
 
-router.post("/",(req,res)=>{
-    res.status(201).json({message : "Note created successfully"});
-})
+router.post("/",postNewNotes);
 
-router.put("/:id",(req,res)=>{
-    res.status(200).json({message : "Note updated successfully"});
-})
+router.put("/:id",updateNotes);
 
-router.delete("/:id",(req,res)=>{
-    res.status(200).json({message:"Note deleted successfully"});
-})
+router.delete("/:id",deleteNotes);
 
 
 export default router;
