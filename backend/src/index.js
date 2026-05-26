@@ -1,9 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors"
+
 dotenv.config();
 
 import rateLimiter from "./middlewares/rateLimiter.js";
-
 import notesRoutes from "./Routes/notesRoutes.js";
 import { connectDB } from "./config/db.js";
 
@@ -17,6 +18,9 @@ connectDB();
 //middleware
 app.use(rateLimiter);
 app.use(express.json());
+app.use(cors({
+    origin:"http://localhost:5173",
+}));
 
 app.use("/api/notes",notesRoutes);
 
