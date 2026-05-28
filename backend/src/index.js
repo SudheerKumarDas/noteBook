@@ -16,11 +16,13 @@ const port = 3000 || process.env.PORT;
 connectDB();
 
 //middleware
-app.use(rateLimiter);
 app.use(express.json());
 app.use(cors({
     origin:"http://localhost:5173",
 }));
+app.use(rateLimiter);
+
+
 
 app.use("/api/notes",notesRoutes);
 
