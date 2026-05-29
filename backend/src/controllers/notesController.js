@@ -41,7 +41,7 @@ export const postNewNotes = async (req,res)=>{
     }
 }
 
-export const updateNotes =async (req,res)=>{
+export const updateNotes = async (req,res)=>{
     try {
         const {title,content} = req.body;
         await Note.findByIdAndUpdate(req.params.id,{title,content});
