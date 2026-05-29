@@ -78,6 +78,9 @@ Create a `.env` file in the backend folder:
 ```env
 MONGO_URI=your_mongodb_connection_string
 PORT=3000
+UPSTASH_REDIS_REST_URL=<your_redis_rest_url>
+UPSTASH_REDIS_REST_TOKEN=<your_redis_rest_token>
+NODE_ENV=development
 ```
 
 ---
