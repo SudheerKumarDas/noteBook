@@ -29,8 +29,6 @@ function NoteDetailPage() {
     fetchedNote();
   },[id])
 
-  console.log({note});
-
   const handleDelete = async () => {
       if(!window.confirm("Are you sure want to delete the note?")) return;
       try {
